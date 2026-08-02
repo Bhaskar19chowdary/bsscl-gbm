@@ -17,8 +17,10 @@ def test_multiprocessing_inference():
     
     baseline = model.predict(X)
     
+    import multiprocessing as mp
     # Concurrent processes simulating gunicorn workers
-    with ProcessPoolExecutor(max_workers=4) as executor:
+    ctx = mp.get_context('spawn')
+    with ProcessPoolExecutor(max_workers=4, mp_context=ctx) as executor:
         futures = [executor.submit(concurrent_predict, model, X) for _ in range(4)]
         results = [f.result() for f in futures]
         
