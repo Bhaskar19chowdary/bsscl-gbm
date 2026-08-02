@@ -2116,7 +2116,7 @@ class HybridHistGBMNumbaV2:
         >>> predictions = model.predict_batch_parallel(X_large, n_workers=4)
         """
         import math
-        from multiprocessing import Pool
+        import multiprocessing as mp
 
         n = len(X)
         if n <= batch_size:
@@ -2125,8 +2125,9 @@ class HybridHistGBMNumbaV2:
         n_batches = math.ceil(n / batch_size)
         batches = [X[i * batch_size: min((i + 1) * batch_size, n)] for i in range(n_batches)]
 
-        # Use multiprocessing (not threads) for Numba safety
-        with Pool(processes=n_workers) as pool:
+        # Use explicitly 'spawn' context to prevent Numba thread deadlocks on Linux
+        ctx = mp.get_context('spawn')
+        with ctx.Pool(processes=n_workers) as pool:
             results = pool.map(self.predict, batches)
 
         return np.concatenate(results)
