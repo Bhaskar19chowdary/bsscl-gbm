@@ -92,7 +92,6 @@ if HAS_NUMBA:
         indices = np.empty(n, dtype=np.int32)
         
         b_first = bins[0]
-        b_last_edge = bins[-2]
         last_idx = n_bins - 2
         b_end = bins[-1]
         scale = last_idx / (b_end - b_first) if b_end > b_first else 1.0
@@ -805,12 +804,11 @@ if HAS_NUMBA:
                 l = left[node]
                 r = right[node]
                 # If both children are leaves
-                if features[l] == -1 and features[r] == -1:
-                    if split_gains[node] < gamma:
-                        # Prune!
-                        features[node] = -1
-                        left[node] = -1
-                        right[node] = -1
+                if features[l] == -1 and features[r] == -1 and split_gains[node] < gamma:
+                    # Prune!
+                    features[node] = -1
+                    left[node] = -1
+                    right[node] = -1
 
     @njit(parallel=True, cache=True)
     def predict_batch_jit(X_bin, features, thresholds, values, left, right):
@@ -1559,12 +1557,11 @@ class HybridHistGBMNumbaV2:
                     mid = (left_val + right_val) / 2.0
                     tv[left_id] = mid
                     tv[right_id] = mid
-            elif constraint == -1:
+            elif constraint == -1 and left_val < right_val:
                 # Decreasing: left (low values) should predict >= right (high values)
-                if left_val < right_val:
-                    mid = (left_val + right_val) / 2.0
-                    tv[left_id] = mid
-                    tv[right_id] = mid
+                mid = (left_val + right_val) / 2.0
+                tv[left_id] = mid
+                tv[right_id] = mid
 
 
     def _get_subsample_indices(self, rng, all_sample_indices, all_feature_indices,
@@ -2089,7 +2086,7 @@ class HybridHistGBMNumbaV2:
         try:
             # We don't care about the result, we just want to force JIT compilation
             self.predict_proba(dummy_X)
-        except Exception:
+        except (ValueError, AttributeError):
             pass  # nosec B110  # Model may not be fitted yet; that's OK
 
     def predict_batch_parallel(self, X, n_workers=4, batch_size=10000):
