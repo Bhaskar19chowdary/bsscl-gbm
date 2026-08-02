@@ -1,0 +1,182 @@
+
+======================================================================
+  PHASE 3: SCALING GRAPHS (Training Time vs Rows)
+======================================================================
+
+[ Generating Dataset: 10,000 rows ]
+  > Training BSSCL-GBM...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 10000 samples)
+     learning_rate: 0.1500 (data_std=1.05)
+     n_bins:        192 (from 20 features)
+     gamma:         0.00
+     min_child_w:   2.0
+     subsample:     0.8
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.000, class_1=1.000
+  ✓ Tree   1/100  |  train-loss: 0.583443
+  ✓ Tree  20/100  |  train-loss: 0.170547
+  ✓ Tree  40/100  |  train-loss: 0.132585
+  ✓ Tree  60/100  |  train-loss: 0.110389
+  ✓ Tree  80/100  |  train-loss: 0.092694
+  ✓ Tree 100/100  |  train-loss: 0.077129
+
+  ✓ Training complete! (100 trees)
+    Binning:  90.92 ms
+    Training: 428.85 ms
+    Total:    519.76 ms
+    Time: 0.55s
+  > Training XGBoost...
+    Time: 0.18s
+  > Training LightGBM...
+    Time: 0.31s
+  > Training CatBoost...
+    Time: 0.25s
+
+[ Generating Dataset: 50,000 rows ]
+  > Training BSSCL-GBM...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 50000 samples)
+     learning_rate: 0.0800 (data_std=1.05)
+     n_bins:        192 (from 20 features)
+     gamma:         0.00
+     min_child_w:   3.0
+     subsample:     0.75
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.000, class_1=1.000
+  ✓ Tree   1/100  |  train-loss: 0.623375
+  ✓ Tree  20/100  |  train-loss: 0.171894
+  ✓ Tree  40/100  |  train-loss: 0.091581
+  ✓ Tree  60/100  |  train-loss: 0.077495
+  ✓ Tree  80/100  |  train-loss: 0.071730
+  ✓ Tree 100/100  |  train-loss: 0.067356
+
+  ✓ Training complete! (100 trees)
+    Binning:  7.77 ms
+    Training: 809.42 ms
+    Total:    817.20 ms
+    Time: 0.88s
+  > Training XGBoost...
+    Time: 0.20s
+  > Training LightGBM...
+    Time: 0.38s
+  > Training CatBoost...
+    Time: 0.33s
+
+[ Generating Dataset: 100,000 rows ]
+  > Training BSSCL-GBM...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 100000 samples)
+     learning_rate: 0.0800 (data_std=1.04)
+     n_bins:        192 (from 20 features)
+     gamma:         0.00
+     min_child_w:   3.0
+     subsample:     0.75
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.000, class_1=1.000
+  ✓ Tree   1/100  |  train-loss: 0.644200
+  ✓ Tree  20/100  |  train-loss: 0.331243
+  ✓ Tree  40/100  |  train-loss: 0.290683
+  ✓ Tree  60/100  |  train-loss: 0.283467
+  ✓ Tree  80/100  |  train-loss: 0.279861
+  ✓ Tree 100/100  |  train-loss: 0.275889
+
+  ✓ Training complete! (100 trees)
+    Binning:  8.16 ms
+    Training: 1292.41 ms
+    Total:    1300.57 ms
+    Time: 1.44s
+  > Training XGBoost...
+    Time: 0.30s
+  > Training LightGBM...
+    Time: 0.55s
+  > Training CatBoost...
+    Time: 0.49s
+
+[ Generating Dataset: 500,000 rows ]
+  > Training BSSCL-GBM...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 500000 samples)
+     learning_rate: 0.0800 (data_std=1.03)
+     n_bins:        192 (from 20 features)
+     gamma:         0.00
+     min_child_w:   3.0
+     subsample:     0.75
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.000, class_1=1.000
+  ✓ Tree   1/100  |  train-loss: 0.631002
+  ✓ Tree  20/100  |  train-loss: 0.228439
+  ✓ Tree  40/100  |  train-loss: 0.169822
+  ✓ Tree  60/100  |  train-loss: 0.161623
+  ✓ Tree  80/100  |  train-loss: 0.159982
+  ✓ Tree 100/100  |  train-loss: 0.158962
+
+  ✓ Training complete! (100 trees)
+    Binning:  38.10 ms
+    Training: 5452.52 ms
+    Total:    5490.62 ms
+    Time: 6.23s
+  > Training XGBoost...
+    Time: 0.67s
+  > Training LightGBM...
+    Time: 0.88s
+  > Training CatBoost...
+    Time: 1.87s
+
+[ Generating Dataset: 1,000,000 rows ]
+  > Training BSSCL-GBM...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 1000000 samples)
+     learning_rate: 0.0800 (data_std=1.03)
+     n_bins:        192 (from 20 features)
+     gamma:         0.00
+     min_child_w:   3.0
+     subsample:     0.75
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.000, class_1=1.000
+  ✓ Tree   1/100  |  train-loss: 0.621871
+  ✓ Tree  20/100  |  train-loss: 0.144565
+  ✓ Tree  40/100  |  train-loss: 0.074069
+  ✓ Tree  60/100  |  train-loss: 0.060833
+  ✓ Tree  80/100  |  train-loss: 0.059023
+  ✓ Tree 100/100  |  train-loss: 0.058374
+
+  ✓ Training complete! (100 trees)
+    Binning:  76.91 ms
+    Training: 12503.32 ms
+    Total:    12580.23 ms
+    Time: 14.07s
+  > Training XGBoost...
+    Time: 1.22s
+  > Training LightGBM...
+    Time: 1.25s
+  > Training CatBoost...
+    Time: 3.07s
+
+✅ Saved scaling graph to 'scaling_graph.png'
+✅ Saved raw data to 'scaling_data.csv'

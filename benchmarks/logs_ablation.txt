@@ -1,0 +1,226 @@
+
+======================================================================
+  PHASE 3: ABLATION STUDY (Proving Component Value)
+======================================================================
+Generating High-Variance Imbalanced Data (100k rows, 1% minority)...
+
+[ Dataset: Severe Imbalance (100k) ]
+  > Training Full BSSCL-GBM (Hybrid + Weights)...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 80000 samples)
+     learning_rate: 0.0800 (data_std=1.74)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   3.0
+     subsample:     0.75
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=0.816, class_1=2.876
+  ✓ Tree   1/100  |  train-loss: 0.622801
+  ✓ Tree  20/100  |  train-loss: 0.147850
+  ✓ Tree  40/100  |  train-loss: 0.065674
+  ✓ Tree  60/100  |  train-loss: 0.046545
+  ✓ Tree  80/100  |  train-loss: 0.039840
+  ✓ Tree 100/100  |  train-loss: 0.035439
+
+  ✓ Training complete! (100 trees)
+    Binning:  106.17 ms
+    Training: 1158.79 ms
+    Total:    1264.96 ms
+    Acc: 0.991 | F1: 0.587 | PR-AUC: 0.595 | Time: 1.45s
+  > Training Without Hybrid Binning (Standard)...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 80000 samples)
+     learning_rate: 0.0800 (data_std=1.74)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   3.0
+     subsample:     0.75
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=0.816, class_1=2.876
+  ✓ Tree   1/100  |  train-loss: 0.623287
+  ✓ Tree  20/100  |  train-loss: 0.147843
+  ✓ Tree  40/100  |  train-loss: 0.065958
+  ✓ Tree  60/100  |  train-loss: 0.046743
+  ✓ Tree  80/100  |  train-loss: 0.040078
+  ✓ Tree 100/100  |  train-loss: 0.035787
+
+  ✓ Training complete! (100 trees)
+    Binning:  7.23 ms
+    Training: 1106.34 ms
+    Total:    1113.57 ms
+    Acc: 0.991 | F1: 0.578 | PR-AUC: 0.584 | Time: 1.27s
+  > Training Without Focal Loss/Weights...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 80000 samples)
+     learning_rate: 0.0800 (data_std=1.74)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   3.0
+     subsample:     0.75
+     colsample:     0.8
+  ✓ Tree   1/100  |  train-loss: 0.620546
+  ✓ Tree  20/100  |  train-loss: 0.134327
+  ✓ Tree  40/100  |  train-loss: 0.056952
+  ✓ Tree  60/100  |  train-loss: 0.040435
+  ✓ Tree  80/100  |  train-loss: 0.034992
+  ✓ Tree 100/100  |  train-loss: 0.032139
+
+  ✓ Training complete! (100 trees)
+    Binning:  7.76 ms
+    Training: 1099.01 ms
+    Total:    1106.77 ms
+    Acc: 0.990 | F1: 0.509 | PR-AUC: 0.588 | Time: 1.26s
+  > Training Without Early Stopping / Growth...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 80000 samples)
+     learning_rate: 0.0800 (data_std=1.74)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   3.0
+     subsample:     0.75
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=0.816, class_1=2.876
+  ✓ Tree   1/100  |  train-loss: 0.623132
+  ✓ Tree  20/100  |  train-loss: 0.147148
+  ✓ Tree  40/100  |  train-loss: 0.066268
+  ✓ Tree  60/100  |  train-loss: 0.046720
+  ✓ Tree  80/100  |  train-loss: 0.039718
+  ✓ Tree 100/100  |  train-loss: 0.035464
+
+  ✓ Training complete! (100 trees)
+    Binning:  7.78 ms
+    Training: 1086.97 ms
+    Total:    1094.75 ms
+    Acc: 0.991 | F1: 0.573 | PR-AUC: 0.578 | Time: 1.27s
+
+[ Dataset: Breast Cancer (569) ]
+  > Training Full BSSCL-GBM (Hybrid + Weights)...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 455 samples)
+     learning_rate: 0.1000 (data_std=224.61)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   1.0
+     subsample:     0.8
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.091, class_1=0.935
+  ✓ Tree   1/100  |  train-loss: 0.611838
+  ✓ Tree  20/100  |  train-loss: 0.116168
+  ✓ Tree  40/100  |  train-loss: 0.041408
+  ✓ Tree  60/100  |  train-loss: 0.023291
+  ✓ Tree  80/100  |  train-loss: 0.016015
+  ✓ Tree 100/100  |  train-loss: 0.012517
+
+  ✓ Training complete! (100 trees)
+    Binning:  0.14 ms
+    Training: 107.84 ms
+    Total:    107.98 ms
+    Acc: 0.956 | F1: 0.966 | PR-AUC: 0.996 | Time: 0.11s
+  > Training Without Hybrid Binning (Standard)...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 455 samples)
+     learning_rate: 0.1000 (data_std=224.61)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   1.0
+     subsample:     0.8
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.091, class_1=0.935
+  ✓ Tree   1/100  |  train-loss: 0.611349
+  ✓ Tree  20/100  |  train-loss: 0.115781
+  ✓ Tree  40/100  |  train-loss: 0.040384
+  ✓ Tree  60/100  |  train-loss: 0.022434
+  ✓ Tree  80/100  |  train-loss: 0.015701
+  ✓ Tree 100/100  |  train-loss: 0.012395
+
+  ✓ Training complete! (100 trees)
+    Binning:  0.13 ms
+    Training: 106.30 ms
+    Total:    106.44 ms
+    Acc: 0.965 | F1: 0.972 | PR-AUC: 0.998 | Time: 0.11s
+  > Training Without Focal Loss/Weights...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 455 samples)
+     learning_rate: 0.1000 (data_std=224.61)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   1.0
+     subsample:     0.8
+     colsample:     0.8
+  ✓ Tree   1/100  |  train-loss: 0.613786
+  ✓ Tree  20/100  |  train-loss: 0.114975
+  ✓ Tree  40/100  |  train-loss: 0.041893
+  ✓ Tree  60/100  |  train-loss: 0.023545
+  ✓ Tree  80/100  |  train-loss: 0.016520
+  ✓ Tree 100/100  |  train-loss: 0.012907
+
+  ✓ Training complete! (100 trees)
+    Binning:  0.15 ms
+    Training: 110.89 ms
+    Total:    111.04 ms
+    Acc: 0.947 | F1: 0.959 | PR-AUC: 0.996 | Time: 0.12s
+  > Training Without Early Stopping / Growth...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 455 samples)
+     learning_rate: 0.1000 (data_std=224.61)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   1.0
+     subsample:     0.8
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.091, class_1=0.935
+  ✓ Tree   1/100  |  train-loss: 0.610030
+  ✓ Tree  20/100  |  train-loss: 0.114480
+  ✓ Tree  40/100  |  train-loss: 0.039961
+  ✓ Tree  60/100  |  train-loss: 0.022880
+  ✓ Tree  80/100  |  train-loss: 0.015858
+  ✓ Tree 100/100  |  train-loss: 0.012427
+
+  ✓ Training complete! (100 trees)
+    Binning:  0.15 ms
+    Training: 163.92 ms
+    Total:    164.06 ms
+    Acc: 0.947 | F1: 0.958 | PR-AUC: 0.996 | Time: 0.17s
+
+Saving Ablation Study Table...
+✅ Saved to ablation_study_results.md

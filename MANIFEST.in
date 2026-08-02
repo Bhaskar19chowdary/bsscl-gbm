@@ -1,0 +1,10 @@
+include LICENSE
+include README.md
+include CHANGELOG.md
+include CITATION.cff
+include SECURITY.md
+include CONTRIBUTING.md
+include CODE_OF_CONDUCT.md
+
+recursive-include docs *.md
+recursive-include examples *.ipynb

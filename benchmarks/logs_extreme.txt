@@ -1,0 +1,47 @@
+
+======================================================================
+  PHASE 3: EXTREME SCALE BENCHMARK (11M Rows)
+======================================================================
+WARNING: This script will download ~2.5GB of data and may take several hours to run.
+It evaluates the massive Higgs Boson dataset (11,000,000 rows).
+
+[ Downloading 11 Million Row Higgs Dataset from OpenML... ]
+  > Processing data...
+  Shape: (88245, 28) training rows
+
+  > Training BSSCL-GBM...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 88245 samples)
+     learning_rate: 0.0800 (data_std=0.97)
+     n_bins:        256 (from 28 features)
+     gamma:         0.00
+     min_child_w:   3.0
+     subsample:     0.75
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.018, class_1=0.984
+  ✓ Tree   1/100  |  train-loss: 0.679782
+  ✓ Tree  20/100  |  train-loss: 0.574268
+  ✓ Tree  40/100  |  train-loss: 0.541480
+  ✓ Tree  60/100  |  train-loss: 0.524266
+  ✓ Tree  80/100  |  train-loss: 0.513584
+  ✓ Tree 100/100  |  train-loss: 0.505568
+
+  ✓ Training complete! (100 trees)
+    Binning:  108.98 ms
+    Training: 1455.17 ms
+    Total:    1564.15 ms
+    Acc: 0.723 | F1: 0.737 | Train Time: 1.70s
+
+  > Training XGBoost...
+    Acc: 0.722 | F1: 0.739 | Train Time: 0.27s
+
+  > Training LightGBM...
+    Acc: 0.721 | F1: 0.737 | Train Time: 0.55s
+
+  > Training CatBoost...
+    Acc: 0.723 | F1: 0.740 | Train Time: 0.57s

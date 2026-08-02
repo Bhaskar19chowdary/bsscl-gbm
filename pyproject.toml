@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bsscl-gbm"
+version = "1.0.0"
+description = "A lightweight, memory-efficient, pure-Python Gradient Boosting Machine optimized with Numba"
+authors = [
+    {name = "Bhaskar"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "Apache-2.0"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+dependencies = [
+    "numpy>=1.22.0",
+    "scipy>=1.8.0",
+    "numba>=0.56.0",
+    "scikit-learn>=1.0.0",
+    "joblib>=1.1.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/bhaskar/bsscl-gbm"
+Repository = "https://github.com/bhaskar/bsscl-gbm"
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = [
+    "stress: marks tests as stress tests that take a long time to run (deselect with '-m \"not stress\"')",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+strict = false

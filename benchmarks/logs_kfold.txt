@@ -1,0 +1,148 @@
+
+======================================================================
+  PHASE 3: STATISTICAL SIGNIFICANCE (5-Fold CV)
+======================================================================
+
+  > Evaluating BSSCL-GBM...
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 455 samples)
+     learning_rate: 0.1000 (data_std=231.91)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   1.0
+     subsample:     0.8
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.093, class_1=0.934
+  ✓ Tree   1/100  |  train-loss: 0.613378
+  ✓ Tree  20/100  |  train-loss: 0.117199
+  ✓ Tree  40/100  |  train-loss: 0.042584
+  ✓ Tree  60/100  |  train-loss: 0.024281
+  ✓ Tree  80/100  |  train-loss: 0.016843
+  ✓ Tree 100/100  |  train-loss: 0.013392
+
+  ✓ Training complete! (100 trees)
+    Binning:  163.31 ms
+    Training: 112.49 ms
+    Total:    275.81 ms
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 455 samples)
+     learning_rate: 0.1000 (data_std=231.11)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   1.0
+     subsample:     0.8
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.093, class_1=0.934
+  ✓ Tree   1/100  |  train-loss: 0.609781
+  ✓ Tree  20/100  |  train-loss: 0.108888
+  ✓ Tree  40/100  |  train-loss: 0.038317
+  ✓ Tree  60/100  |  train-loss: 0.022483
+  ✓ Tree  80/100  |  train-loss: 0.015752
+  ✓ Tree 100/100  |  train-loss: 0.012658
+
+  ✓ Training complete! (100 trees)
+    Binning:  0.13 ms
+    Training: 106.03 ms
+    Total:    106.17 ms
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 455 samples)
+     learning_rate: 0.1000 (data_std=228.47)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   1.0
+     subsample:     0.8
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.091, class_1=0.935
+  ✓ Tree   1/100  |  train-loss: 0.609469
+  ✓ Tree  20/100  |  train-loss: 0.112523
+  ✓ Tree  40/100  |  train-loss: 0.037720
+  ✓ Tree  60/100  |  train-loss: 0.020591
+  ✓ Tree  80/100  |  train-loss: 0.014288
+  ✓ Tree 100/100  |  train-loss: 0.011570
+
+  ✓ Training complete! (100 trees)
+    Binning:  0.15 ms
+    Training: 109.29 ms
+    Total:    109.44 ms
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 455 samples)
+     learning_rate: 0.1000 (data_std=226.68)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   1.0
+     subsample:     0.8
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.091, class_1=0.935
+  ✓ Tree   1/100  |  train-loss: 0.614364
+  ✓ Tree  20/100  |  train-loss: 0.119402
+  ✓ Tree  40/100  |  train-loss: 0.043259
+  ✓ Tree  60/100  |  train-loss: 0.024052
+  ✓ Tree  80/100  |  train-loss: 0.016623
+  ✓ Tree 100/100  |  train-loss: 0.013100
+
+  ✓ Training complete! (100 trees)
+    Binning:  0.33 ms
+    Training: 116.69 ms
+    Total:    117.02 ms
+
+======================================================================
+  Training Hybrid GBM v3.0 — Binary
+======================================================================
+  🔧 Adaptive Hyperparameters:
+     n_estimators:  100
+     max_depth:     6 (from 456 samples)
+     learning_rate: 0.1000 (data_std=223.22)
+     n_bins:        256 (from 30 features)
+     gamma:         0.00
+     min_child_w:   1.0
+     subsample:     0.8
+     colsample:     0.8
+  ⚖️  Class weights (sqrt-dampened): class_0=1.092, class_1=0.934
+  ✓ Tree   1/100  |  train-loss: 0.613213
+  ✓ Tree  20/100  |  train-loss: 0.118573
+  ✓ Tree  40/100  |  train-loss: 0.042380
+  ✓ Tree  60/100  |  train-loss: 0.023740
+  ✓ Tree  80/100  |  train-loss: 0.016967
+  ✓ Tree 100/100  |  train-loss: 0.013388
+
+  ✓ Training complete! (100 trees)
+    Binning:  0.15 ms
+    Training: 114.20 ms
+    Total:    114.35 ms
+    Acc: 0.961 ± 0.016
+    F1:  0.969 ± 0.013
+
+  > Evaluating XGBoost...
+    Acc: 0.956 ± 0.012
+    F1:  0.965 ± 0.009
+
+  > Evaluating LightGBM...
+    Acc: 0.963 ± 0.014
+    F1:  0.971 ± 0.011
+
+  > Evaluating CatBoost...
+    Acc: 0.961 ± 0.013
+    F1:  0.970 ± 0.010
+
+Saving Statistical Study Table...
+✅ Saved to kfold_stats_results.md
