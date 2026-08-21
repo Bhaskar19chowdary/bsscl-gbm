@@ -43,7 +43,6 @@ Date: July 2026
 import time
 
 import numpy as np
-import pandas as pd
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # NUMBA JIT
@@ -2037,6 +2036,7 @@ class HybridHistGBMNumbaV1_0_1:
             for j in self.categorical_features:
                 col = X[:, j]
                 try:
+                    import pandas as pd
                     nan_mask = pd.isna(col)
                 except:
                     nan_mask = col != col
@@ -2062,6 +2062,7 @@ class HybridHistGBMNumbaV1_0_1:
                 for val, idx in mapping.items():
                     mapped_col[col == val] = idx
                 try:
+                    import pandas as pd
                     nan_mask = pd.isna(col)
                 except:
                     nan_mask = col != col
