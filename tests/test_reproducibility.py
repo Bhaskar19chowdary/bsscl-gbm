@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 
 def test_benchmark_reproducibility():
     """Execute the same benchmark repeatedly to ensure 100% determinism."""
@@ -11,7 +11,7 @@ def test_benchmark_reproducibility():
     
     # Run 100 times to guarantee perfect determinism
     for seed in range(100):
-        model = HybridHistGBMNumbaV2(n_estimators=5, max_depth=2, random_state=42)
+        model = HybridHistGBMNumbaV1_0_1(n_estimators=5, max_depth=2, random_state=42)
         model.fit(X, y)
         preds = model.predict(X)
         

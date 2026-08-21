@@ -1,13 +1,13 @@
 import numpy as np
 import pytest
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 
 def test_numerical_precision_float32():
     """Test model behavior on float32 arrays."""
     X = np.random.RandomState(42).randn(100, 5).astype(np.float32)
     y = np.random.RandomState(42).randint(0, 2, size=100)
     
-    model = HybridHistGBMNumbaV2(n_estimators=2, max_depth=2, random_state=42)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=2, max_depth=2, random_state=42)
     model.fit(X, y)
     preds = model.predict(X)
     
@@ -19,7 +19,7 @@ def test_numerical_precision_float16():
     X = np.random.RandomState(42).randn(100, 5).astype(np.float16)
     y = np.random.RandomState(42).randint(0, 2, size=100)
     
-    model = HybridHistGBMNumbaV2(n_estimators=2, max_depth=2, random_state=42)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=2, max_depth=2, random_state=42)
     model.fit(X, y)
     preds = model.predict(X)
     
@@ -30,12 +30,12 @@ def test_numerical_precision_int_types():
     X_int32 = np.random.RandomState(42).randint(-1000, 1000, size=(100, 5), dtype=np.int32)
     y = np.random.RandomState(42).randint(0, 2, size=100)
     
-    model = HybridHistGBMNumbaV2(n_estimators=2, max_depth=2, random_state=42)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=2, max_depth=2, random_state=42)
     model.fit(X_int32, y)
     preds_int32 = model.predict(X_int32)
     
     X_int64 = X_int32.astype(np.int64)
-    model_int64 = HybridHistGBMNumbaV2(n_estimators=2, max_depth=2, random_state=42)
+    model_int64 = HybridHistGBMNumbaV1_0_1(n_estimators=2, max_depth=2, random_state=42)
     model_int64.fit(X_int64, y)
     preds_int64 = model_int64.predict(X_int64)
     
@@ -51,7 +51,7 @@ def test_overflow_protection():
     ])
     y = np.array([0, 1, 0])
     
-    model = HybridHistGBMNumbaV2(n_estimators=2, max_depth=2)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=2, max_depth=2)
     
     import warnings
     try:

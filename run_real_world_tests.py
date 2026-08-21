@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 import time
 import os
 
@@ -40,7 +40,7 @@ def run_real_world_dataset(name, data_id, task="classification"):
         print(f"Training...")
         
         start = time.perf_counter()
-        model = HybridHistGBMNumbaV2(
+        model = HybridHistGBMNumbaV1_0_1(
             n_estimators=50, 
             max_depth=5,
             learning_rate=0.1,

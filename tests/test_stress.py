@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 import time
 import os
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 
 try:
     import psutil
@@ -26,14 +26,14 @@ def test_memory_leak():
     y = np.random.RandomState(42).randint(0, 2, size=100)
     
     # Warmup
-    model = HybridHistGBMNumbaV2(n_estimators=1, max_depth=2, random_state=42)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=1, max_depth=2, random_state=42)
     model.fit(X, y)
     model.predict(X)
     
     start_mem = get_memory_mb()
     
     for _ in range(10000):
-        model = HybridHistGBMNumbaV2(n_estimators=1, max_depth=2)
+        model = HybridHistGBMNumbaV1_0_1(n_estimators=1, max_depth=2)
         model.fit(X, y)
         model.predict(X)
         
@@ -50,7 +50,7 @@ def test_long_duration():
     y = np.random.RandomState(42).randint(0, 3, size=10)
     
     for _ in range(50000):
-        model = HybridHistGBMNumbaV2(n_estimators=1, max_depth=1)
+        model = HybridHistGBMNumbaV1_0_1(n_estimators=1, max_depth=1)
         model.fit(X, y)
         preds = model.predict(X)
         assert np.all(np.isfinite(preds))
@@ -61,12 +61,12 @@ def test_performance_regression():
     y = np.random.RandomState(42).randint(0, 3, size=5000)
     
     # Warmup Numba JIT first so compilation time isn't counted
-    warmup_model = HybridHistGBMNumbaV2(n_estimators=1, max_depth=2)
+    warmup_model = HybridHistGBMNumbaV1_0_1(n_estimators=1, max_depth=2)
     warmup_model.fit(X[:100], y[:100])
     
     start_time = time.perf_counter()
     
-    model = HybridHistGBMNumbaV2(n_estimators=10, max_depth=4, random_state=42)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=10, max_depth=4, random_state=42)
     model.fit(X, y)
     model.predict(X)
     

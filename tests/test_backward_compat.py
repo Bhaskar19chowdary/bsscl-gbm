@@ -3,7 +3,7 @@ import pytest
 import pickle
 import os
 import tempfile
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 
 def test_backward_compatibility():
     """Simulate loading a model saved from an older version (V1.0) and verify predictions still work."""
@@ -11,7 +11,7 @@ def test_backward_compatibility():
     y = np.random.RandomState(42).randint(0, 2, size=10)
     
     # We train a modern model
-    model = HybridHistGBMNumbaV2(n_estimators=1, max_depth=1)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=1, max_depth=1)
     model.fit(X, y)
     preds_modern = model.predict(X)
     

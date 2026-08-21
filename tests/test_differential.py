@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 from sklearn.ensemble import HistGradientBoostingClassifier
 
 def test_differential_sklearn():
@@ -19,7 +19,7 @@ def test_differential_sklearn():
     sk_preds = sk_model.predict_proba(X)[:, 1]
     
     # Train bsscl-gbm
-    our_model = HybridHistGBMNumbaV2(
+    our_model = HybridHistGBMNumbaV1_0_1(
         n_estimators=10, 
         max_depth=3, 
         learning_rate=0.1, 

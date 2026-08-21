@@ -1,10 +1,10 @@
 import numpy as np
 import pytest
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 
 def test_fuzz_invalid_types():
     """Test that the model gracefully rejects or handles invalid types."""
-    model = HybridHistGBMNumbaV2(n_estimators=1, max_depth=2)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=1, max_depth=2)
     
     # 1. Strings
     X_str = np.array([["a", "b"], ["c", "d"]])
@@ -35,15 +35,14 @@ def test_fuzz_invalid_types():
         from scipy.sparse import csr_matrix
         X_sparse = csr_matrix([[1, 2], [3, 4]])
         y_sparse = np.array([0, 1])
-        with pytest.raises((ValueError, TypeError)):
-            # Our current implementation requires dense numpy arrays
-            model.fit(X_sparse, y_sparse)
+        model.fit(X_sparse, y_sparse)
+        model.predict(X_sparse)
     except ImportError:
         pass
 
 def test_fuzz_extreme_values():
     """Test NaN, Inf, and extreme values."""
-    model = HybridHistGBMNumbaV2(n_estimators=1, max_depth=2)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=1, max_depth=2)
     
     # NaN and Inf are supported by the binning logic or rejected gracefully
     X = np.random.randn(100, 10)
@@ -73,7 +72,7 @@ def test_fuzz_massive_loop():
         if i % 2 == 0:
             X[0, 0] = np.nan
             
-        model = HybridHistGBMNumbaV2(n_estimators=1, max_depth=2)
+        model = HybridHistGBMNumbaV1_0_1(n_estimators=1, max_depth=2)
         model.fit(X, y)
         preds = model.predict(X)
         

@@ -4,14 +4,14 @@ import pickle
 import joblib
 import os
 import tempfile
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 
 def test_serialization_integrity():
     """Serialization integrity testing for Pickle and Joblib."""
     X = np.random.RandomState(42).randn(100, 10)
     y = np.random.RandomState(42).randint(0, 3, size=100)
     
-    model = HybridHistGBMNumbaV2(n_estimators=3, max_depth=2, random_state=42)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=3, max_depth=2, random_state=42)
     model.fit(X, y)
     
     original_preds = model.predict(X)

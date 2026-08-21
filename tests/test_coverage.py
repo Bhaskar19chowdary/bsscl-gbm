@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 
 def test_multiclass_and_early_stopping():
     """Trigger multiclass, level-wise growth, early stopping, and monotonic constraints."""
@@ -9,7 +9,7 @@ def test_multiclass_and_early_stopping():
     
     # We pass an explicit categorical set and monotonic constraint to hit those branches
     # X[:, 0] is categorical, X[:, 1] has a monotonic constraint of 1
-    model = HybridHistGBMNumbaV2(
+    model = HybridHistGBMNumbaV1_0_1(
         n_estimators=100,
         max_depth=4,
         learning_rate=0.1,
@@ -47,7 +47,7 @@ def test_missing_value_handling_and_auto_weights():
     y = np.zeros(200, dtype=np.int32)
     y[:10] = 1
     
-    model = HybridHistGBMNumbaV2(
+    model = HybridHistGBMNumbaV1_0_1(
         n_estimators=10,
         class_weight='balanced_sqrt',
         random_state=42
@@ -64,7 +64,7 @@ def test_zero_variance_feature():
     X = np.ones((50, 3)) # Completely uniform data
     y = np.random.randint(0, 2, 50)
     
-    model = HybridHistGBMNumbaV2(n_estimators=2)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=2)
     model.fit(X, y)
     preds = model.predict(X)
     assert len(preds) == 50
@@ -74,7 +74,7 @@ def test_single_row_prediction():
     X = np.random.randn(100, 3)
     y = np.random.randint(0, 2, 100)
     
-    model = HybridHistGBMNumbaV2(n_estimators=2)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=2)
     model.fit(X, y)
     
     # Single row predict
@@ -90,7 +90,7 @@ def test_predict_batch_parallel_multiclass():
     X = np.random.randn(100, 3)
     y = np.random.randint(0, 3, 100)
     
-    model = HybridHistGBMNumbaV2(n_estimators=5)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=5)
     model.fit(X, y)
     
     # Test batch parallel predictions

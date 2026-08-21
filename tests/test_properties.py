@@ -1,13 +1,13 @@
 import numpy as np
 import pytest
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 
 def test_property_invariants():
     """Property-based testing for model invariants."""
     X = np.random.RandomState(42).randn(100, 10)
     y = np.random.RandomState(42).randint(0, 3, size=100)
     
-    model = HybridHistGBMNumbaV2(n_estimators=5, max_depth=3, random_state=42)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=5, max_depth=3, random_state=42)
     model.fit(X, y)
     
     predictions = model.predict(X)

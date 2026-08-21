@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 from concurrent.futures import ProcessPoolExecutor
-from bsscl_gbm import HybridHistGBMNumbaV2
+from bsscl_gbm import HybridHistGBMNumbaV1_0_1
 
 def concurrent_predict(m, X_data):
     return m.predict(X_data)
@@ -12,7 +12,7 @@ def test_multiprocessing_inference():
     y = np.random.RandomState(42).randint(0, 2, size=100)
     
     # Train ONCE on the main process
-    model = HybridHistGBMNumbaV2(n_estimators=2, max_depth=2, random_state=42)
+    model = HybridHistGBMNumbaV1_0_1(n_estimators=2, max_depth=2, random_state=42)
     model.fit(X, y)
     
     baseline = model.predict(X)
