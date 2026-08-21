@@ -1,12 +1,12 @@
 import os
+from typing import Any
+
 import joblib
 import numpy as np
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, create_model
-from typing import List, Dict, Any
 
 # Ensure BSSCL-GBM is in path or installed
-from .estimator_v1_2_0 import HybridHistGBMNumbaV1_2_0
 
 app = FastAPI(title="BSSCL-GBM Inference API", version="1.2.0")
 
@@ -40,19 +40,19 @@ async def load_model():
     print("✅ Model loaded successfully.")
 
 class PredictResponse(BaseModel):
-    predictions: List[Any]
-    probabilities: List[List[float]] = None
+    predictions: list[Any]
+    probabilities: list[list[float]] = None
     
 class ExplainResponse(BaseModel):
     expected_value: float
-    contributions: Dict[str, float]
+    contributions: dict[str, float]
 
 @app.get("/health")
 def health_check():
     return {"status": "ok", "model_loaded": model is not None}
 
 @app.post("/predict", response_model=PredictResponse)
-async def predict(payload: List[Dict[str, float]]):
+async def predict(payload: list[dict[str, float]]):
     if model is None:
         raise HTTPException(status_code=503, detail="Model is not loaded.")
         
@@ -63,7 +63,7 @@ async def predict(payload: List[Dict[str, float]]):
             for j, fname in enumerate(feature_names):
                 X[i, j] = row[fname]
     except KeyError as e:
-        raise HTTPException(status_code=400, detail=f"Missing feature in payload: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"Missing feature in payload: {e!s}")
         
     # Predict
     preds = model.predict(X).tolist()
@@ -74,8 +74,8 @@ async def predict(payload: List[Dict[str, float]]):
         
     return res
 
-@app.post("/explain", response_model=List[ExplainResponse])
-async def explain(payload: List[Dict[str, float]]):
+@app.post("/explain", response_model=list[ExplainResponse])
+async def explain(payload: list[dict[str, float]]):
     """
     Returns exact local feature contributions using ultra-fast Numba Native TreeSHAP.
     """
@@ -91,7 +91,7 @@ async def explain(payload: List[Dict[str, float]]):
             for j, fname in enumerate(feature_names):
                 X[i, j] = row[fname]
     except KeyError as e:
-        raise HTTPException(status_code=400, detail=f"Missing feature in payload: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"Missing feature in payload: {e!s}")
         
     # Get contributions
     contribs = model.predict_contributions(X)

@@ -3,6 +3,7 @@ Sparse Matrix Engine for BSSCL-GBM
 Handles scipy.sparse.csr_matrix natively in Numba JIT
 """
 import numpy as np
+
 try:
     from numba import njit, prange
     HAS_NUMBA = True
@@ -104,8 +105,7 @@ if HAS_NUMBA:
         max_feat = 0
         if n_selected_features > 0:
             for f in feature_indices:
-                if f > max_feat:
-                    max_feat = f
+                max_feat = max(max_feat, f)
         
         # Map: global feature index -> local selected index (-1 if not selected)
         feat_map = np.full(max_feat + 1, -1, dtype=np.int32)

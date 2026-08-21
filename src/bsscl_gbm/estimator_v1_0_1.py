@@ -40,9 +40,8 @@ Version: 3.0 (Enterprise Edition)
 Date: July 2026
 """
 
-import concurrent.futures
 import time
-import os
+
 import numpy as np
 import pandas as pd
 
@@ -51,8 +50,8 @@ import pandas as pd
 # ═══════════════════════════════════════════════════════════════════════════════
 
 try:
-    from numba import njit, prange, cuda
     import numba
+    from numba import cuda, njit, prange
     HAS_NUMBA = True
 except ImportError:
     HAS_NUMBA = False
@@ -3110,14 +3109,7 @@ class HybridHistGBMNumbaV1_0_1:
             X_val, y_val = eval_set[0]
 
         # ─── Detect number of classes ───
-        if self.objective == 'regression':
-            self._is_multiclass = False
-            self.classes_ = None
-            self.n_classes_ = 1
-            y = np.array(y, dtype=np.float64)
-            if y_val is not None:
-                y_val = np.array(y_val, dtype=np.float64)
-        elif self.objective == 'lambdarank':
+        if self.objective == 'regression' or self.objective == 'lambdarank':
             self._is_multiclass = False
             self.classes_ = None
             self.n_classes_ = 1
@@ -3438,8 +3430,7 @@ class HybridHistGBMNumbaV1_0_1:
         """
         try:
             import onnx
-            from onnx import helper
-            from onnx import TensorProto
+            from onnx import TensorProto, helper
         except ImportError:
             raise ImportError("ONNX export requires the 'onnx' package. Run `pip install onnx`.")
             
@@ -3973,10 +3964,18 @@ class HybridHistGBMNumbaV1_0_1:
         -------
         scores : numpy array of shape (cv,)
         """
-        from sklearn.model_selection import StratifiedKFold, KFold
-        from sklearn.metrics import (accuracy_score, f1_score, precision_score,
-                                     recall_score, roc_auc_score, log_loss,
-                                     matthews_corrcoef, r2_score, mean_squared_error)
+        from sklearn.metrics import (
+            accuracy_score,
+            f1_score,
+            log_loss,
+            matthews_corrcoef,
+            mean_squared_error,
+            precision_score,
+            r2_score,
+            recall_score,
+            roc_auc_score,
+        )
+        from sklearn.model_selection import KFold, StratifiedKFold
 
         X = np.asarray(X, dtype=np.float64)
         y = np.asarray(y)

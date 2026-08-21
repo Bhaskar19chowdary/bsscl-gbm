@@ -41,6 +41,7 @@ Date: July 2026
 """
 
 import time
+
 import numpy as np
 import pandas as pd
 
@@ -2135,14 +2136,7 @@ class HybridHistGBMNumbaV2:
             X_val, y_val = eval_set[0]
 
         # ─── Detect number of classes ───
-        if self.objective == 'regression':
-            self._is_multiclass = False
-            self.classes_ = None
-            self.n_classes_ = 1
-            y = np.array(y, dtype=np.float64)
-            if y_val is not None:
-                y_val = np.array(y_val, dtype=np.float64)
-        elif self.objective == 'lambdarank':
+        if self.objective == 'regression' or self.objective == 'lambdarank':
             self._is_multiclass = False
             self.classes_ = None
             self.n_classes_ = 1

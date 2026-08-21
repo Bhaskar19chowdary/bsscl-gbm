@@ -1,15 +1,15 @@
+import json
 import os
 import sys
-import json
 import time
-import redis.asyncio as redis
-from fastapi import FastAPI, Depends, HTTPException, Security
-from fastapi.security import APIKeyHeader
-from fastapi.responses import Response
-from pydantic import BaseModel
-from typing import List, Dict
+
 import numpy as np
-from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
+import redis.asyncio as redis
+from fastapi import FastAPI, HTTPException, Security
+from fastapi.responses import Response
+from fastapi.security import APIKeyHeader
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, Histogram, generate_latest
+from pydantic import BaseModel
 
 # Import BSSCL-GBM
 sys.path.insert(0, '/app/src')
@@ -49,10 +49,10 @@ async def startup_event():
     
     # Load/Train Models
     print("Loading models...")
-    from sklearn.datasets import make_classification
     import lightgbm as lgb
     import xgboost as xgb
     from catboost import CatBoostClassifier
+    from sklearn.datasets import make_classification
     
     X, y = make_classification(n_samples=5000, n_features=20, random_state=42)
     
@@ -95,7 +95,7 @@ async def health_check():
     }
 
 class PredictionRequest(BaseModel):
-    user_ids: List[str]
+    user_ids: list[str]
 
 @app.get("/metrics")
 async def metrics():
@@ -105,7 +105,7 @@ async def metrics():
 async def ping():
     return {"ping": "pong"}
 
-async def _fetch_and_prepare(user_ids: List[str]):
+async def _fetch_and_prepare(user_ids: list[str]):
     if not user_ids:
         return [], []
         

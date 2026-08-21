@@ -1,13 +1,15 @@
 import numpy as np
 import scipy.sparse
+
 from .estimator_v1_2_0 import HybridHistGBMNumbaV1_2_0
 from .sparse_engine import (
     bin_sparse_features_hybrid_numba,
-    find_zero_bins,
     build_histogram_sparse_njit,
+    find_zero_bins,
     partition_indices_sparse_njit,
-    predict_all_trees_sparse_jit
+    predict_all_trees_sparse_jit,
 )
+
 
 class HybridHistGBMSparse(HybridHistGBMNumbaV1_2_0):
     def __init__(self, *args, **kwargs):
@@ -106,7 +108,6 @@ class HybridHistGBMSparse(HybridHistGBMNumbaV1_2_0):
             print("Multiclass Sparse not fully mapped in this prototype. Run binary test.")
             
     def _build_tree_sparse(self, grad, hess, sample_indices, feature_indices):
-        from .sparse_engine import build_histogram_sparse_njit, partition_indices_sparse_njit
         
         # Simplified tree builder for demonstration
         max_nodes = (1 << (self.max_depth + 1)) - 1
