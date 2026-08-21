@@ -40,4 +40,4 @@ jobs:
         
     - name: Run PyTest & Coverage (Fast Suite)
       run: |
-        pytest tests/ -m "not stress" --cov=bsscl_gbm
+        pytest tests/ -m "not stress" --cov=src/bsscl_gbm
