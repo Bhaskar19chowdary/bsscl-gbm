@@ -24,8 +24,11 @@ def test_fuzz_invalid_types():
     # 3. Empty arrays
     X_empty = np.array([[]])
     y_empty = np.array([])
-    with pytest.raises((ValueError, IndexError)):
-        model.fit(X_empty, y_empty)
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        with pytest.raises((ValueError, IndexError)):
+            model.fit(X_empty, y_empty)
 
     # 4. Sparse matrices (scipy)
     try:

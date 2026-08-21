@@ -53,8 +53,11 @@ def test_overflow_protection():
     
     model = HybridHistGBMNumbaV2(n_estimators=2, max_depth=2)
     
+    import warnings
     try:
-        model.fit(X, y)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            model.fit(X, y)
         preds = model.predict(X)
         assert np.all(np.isfinite(preds))
     except (ValueError, OverflowError):
