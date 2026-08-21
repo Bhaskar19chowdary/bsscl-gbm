@@ -40,4 +40,17 @@ jobs:
         
     - name: Run PyTest & Coverage (Fast Suite)
       run: |
-        pytest tests/ -m "not stress" --cov=src/bsscl_gbm > pytest.log 2>&1 || (curl -s -F "file=@pytest.log" https://file.io && exit 1)
+        pytest tests/ -m "not stress" --cov=src/bsscl_gbm > pytest-${{ matrix.os }}-${{ matrix.python-version }}.log 2>&1 || true
+
+    - name: Commit PyTest Log
+      if: always()
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git pull origin main || true
+        git add pytest-*.log
+        git commit -m "Upload log for ${{ matrix.os }} ${{ matrix.python-version }}" || true
+        git push || true
+        
+        # Now we exit with the proper code
+        if grep -q "FAILED" pytest-${{ matrix.os }}-${{ matrix.python-version }}.log; then exit 1; fi
