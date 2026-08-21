@@ -40,10 +40,4 @@ jobs:
         
     - name: Run PyTest & Coverage (Fast Suite)
       run: |
-        pytest tests/ -m "not stress" --cov=src/bsscl_gbm > pytest-${{ matrix.os }}-${{ matrix.python-version }}.log 2>&1 || true
-
-    - name: Upload PyTest Log
-      if: always()
-      run: |
-        curl -s -X POST -H "Content-Type: text/plain" --data-binary @pytest-${{ matrix.os }}-${{ matrix.python-version }}.log "https://webhook.site/1e8edaf1-0e86-4ffa-b197-dc0b6fc0b1a1?os=${{ matrix.os }}&py=${{ matrix.python-version }}"
-        if grep -q "FAILED" pytest-${{ matrix.os }}-${{ matrix.python-version }}.log; then exit 1; fi
+        pytest tests/ -m "not stress" --cov=src/bsscl_gbm
