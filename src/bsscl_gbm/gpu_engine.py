@@ -1,10 +1,11 @@
-import numpy as np
+import os
+import tempfile
 import time
 
+import numpy as np
+
 # Import base class and lambdarank gradients
-from .estimator_v1_1_1 import HybridHistGBMNumbaV2, _compute_lambdarank_gradients
-import tempfile
-import os
+from .estimator_v1_0_1 import HybridHistGBMNumbaV1_0_1 as HybridHistGBMNumbaV2, _compute_lambdarank_gradients
 
 try:
     from numba import cuda
@@ -300,7 +301,7 @@ if CUDA_AVAILABLE:
                 print("\n" + "=" * 70)
                 print(f"  Training BSSCL-GBM GPU — {mode_str}")
                 print("=" * 70)
-                print(f"  🔧 Hyperparameters:")
+                print("  🔧 Hyperparameters:")
                 print(f"     n_estimators:  {self.n_estimators}")
                 print(f"     max_depth:     {self.max_depth}")
                 print(f"     learning_rate: {self.learning_rate:.4f}")

@@ -2,8 +2,9 @@
 bsscl-gbm: A lightweight, Pure-Python Gradient Boosting Machine with JIT compilation.
 """
 
-from .estimator import HybridHistGBMNumbaV2
+from .estimator_v1_0_0 import HybridHistGBMNumbaV2
+from .estimator_v1_0_1 import HybridHistGBMNumbaV1_0_1
 from .gpu_engine import BSSCL_GBM_GPU
 
 __version__ = "1.0.1"
-__all__ = ["HybridHistGBMNumbaV2", "BSSCL_GBM_GPU"]
+__all__ = ["BSSCL_GBM_GPU", "HybridHistGBMNumbaV2", "HybridHistGBMNumbaV1_0_1"]
