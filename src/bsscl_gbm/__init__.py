@@ -7,4 +7,4 @@ from .estimator_v1_0_1 import HybridHistGBMNumbaV1_0_1
 from .gpu_engine import BSSCL_GBM_GPU
 
 __version__ = "1.0.1"
-__all__ = ["BSSCL_GBM_GPU", "HybridHistGBMNumbaV2", "HybridHistGBMNumbaV1_0_1"]
+__all__ = ["BSSCL_GBM_GPU", "HybridHistGBMNumbaV1_0_1", "HybridHistGBMNumbaV2"]
