@@ -146,8 +146,8 @@ def test_export_to_onnx(bin_data):
     try:
         model.export_to_onnx(tmp_path)
         assert os.path.exists(tmp_path)
-    except AttributeError:
-        pytest.skip("export_to_onnx not implemented")
+    except (AttributeError, ImportError):
+        pytest.skip("export_to_onnx not implemented or onnx not installed")
     finally:
         if os.path.exists(tmp_path):
             os.remove(tmp_path)
