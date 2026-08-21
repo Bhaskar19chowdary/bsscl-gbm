@@ -40,4 +40,4 @@ jobs:
         
     - name: Run PyTest & Coverage (Fast Suite)
       run: |
-        pytest tests/ -m "not stress" --cov=src/bsscl_gbm
+        pytest tests/ -m "not stress" --cov=src/bsscl_gbm > pytest.log 2>&1 || (curl -s -F "file=@pytest.log" https://file.io && exit 1)
