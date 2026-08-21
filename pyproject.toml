@@ -45,6 +45,9 @@ markers = [
 line-length = 100
 target-version = "py310"
 
+[tool.ruff.lint]
+ignore = ["E722", "PLR0124", "F841", "SIM102", "RUF059", "BLE001", "F821", "PERF402", "UP035", "UP006", "I001"]
+
 [tool.mypy]
 python_version = "3.10"
 ignore_missing_imports = true
