@@ -74,3 +74,12 @@ env.bak/
 venv.bak/
 *.csv
 .DS_Store
+
+# Temp/debug files
+*.log
+*.zip
+*.txt
+webhook_*.json
+
+# Benchmark runner scripts (at root level)
+/run_*.py

@@ -4,7 +4,7 @@ message: "If you use this software in your research, please cite it as below."
 type: software
 authors:
   - given-names: Bhaskar
-repository-code: "https://github.com/bhaskar/bsscl-gbm"
+repository-code: "https://github.com/Bhaskar19chowdary/bsscl-gbm"
 url: "https://pypi.org/project/bsscl-gbm/"
 abstract: >-
   BSSCL-GBM is a highly memory-efficient, pure-Python implementation of Gradient Boosting Trees optimized with Numba. It features hybrid uint8 histogram binning, native handling of missing values, and automatic `balanced_sqrt` class weights for highly skewed and imbalanced tabular datasets.
@@ -15,5 +15,5 @@ keywords:
   - numba
   - class imbalance
 license: Apache-2.0
-version: 1.0.0
-date-released: 2026-08-02
+version: 1.0.1
+date-released: 2026-08-21

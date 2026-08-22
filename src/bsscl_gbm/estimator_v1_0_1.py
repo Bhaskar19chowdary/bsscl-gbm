@@ -3569,7 +3569,7 @@ class HybridHistGBMNumbaV1_0_1:
             graph = helper.make_graph([tree_node], "BSSCL_GBM", [X_in], [Y_pred])
             
         opsets = [helper.make_opsetid("", 14), helper.make_opsetid("ai.onnx.ml", 3)]
-        model = helper.make_model(graph, producer_name="bsscl-gbm-v1.2.0", opset_imports=opsets)
+        model = helper.make_model(graph, producer_name="bsscl-gbm-v1.0.1", opset_imports=opsets)
         import onnx
         onnx.save(model, filepath)
         print(f"✅ ONNX model successfully exported to {filepath}")

@@ -56,12 +56,19 @@ model.fit(X_train, y_train)
 The model automatically detects multi-class targets (when `y` has > 2 unique values) and trains a One-vs-Rest ensemble natively.
 
 ```python
-y_multiclass = np.random.randint(0, 5, 10000) # 5 classes
+from sklearn.datasets import make_classification
+
+X_multi, y_multi = make_classification(
+    n_samples=10000, n_features=20, n_classes=5, 
+    n_informative=10, random_state=42
+)
+X_m_train, X_m_test, y_m_train, y_m_test = train_test_split(X_multi, y_multi, test_size=0.2)
+
 model = HybridHistGBMNumbaV1_0_1(n_estimators=50)
-model.fit(X_train, y_multiclass)
+model.fit(X_m_train, y_m_train)
 
 # predict_proba returns a matrix of shape (n_samples, n_classes)
-probs = model.predict_proba(X_test)
+probs = model.predict_proba(X_m_test)
 ```
 
 ## 5. Monotonic Constraints

@@ -30,8 +30,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/bhaskar/bsscl-gbm"
-Repository = "https://github.com/bhaskar/bsscl-gbm"
+Homepage = "https://github.com/Bhaskar19chowdary/bsscl-gbm"
+Repository = "https://github.com/Bhaskar19chowdary/bsscl-gbm"
 
 
 [tool.pytest.ini_options]

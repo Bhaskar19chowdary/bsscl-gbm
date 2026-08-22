@@ -146,6 +146,7 @@ If you utilize BSSCL-GBM for academic research, please cite it using the provide
   author = {Bhaskar},
   title = {BSSCL-GBM: Hybrid Histogram Gradient Boosting Machine},
   year = {2026},
+  version = {1.0.1},
   url = {https://github.com/Bhaskar19chowdary/bsscl-gbm}
 }
 ```
